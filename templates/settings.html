@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <style>
+     /* ====== GLOBAL RESET ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #f3f4f6;
+      display: flex;
+    }
+
+    /* ====== SIDEBAR ====== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 240px;
+      background: #ffffff;
+      border-right: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .sidebar.collapsed {
+      width: 80px;
+    }
+
+    .sidebar-header {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 15px;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .sidebar-header .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .sidebar-header .brand {
+      margin-left: 10px;
+      font-size: 1.2em;
+      color: #1e3a8a;
+      font-weight: 700;
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar.collapsed .brand {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.3em;
+      cursor: pointer;
+      color: #1e3a8a;
+    }
+
+    .profile {
+      padding: 20px 0;
+    }
+
+    .profile-pic {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #1e3a8a;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed .profile-pic {
+      width: 45px;
+      height: 45px;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #1f2937;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .menu a i {
+      font-size: 1.2em;
+      margin-right: 15px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .menu a:hover {
+      background: #e0e7ff;
+      color: #1e3a8a;
+    }
+
+    .menu a.active {
+      background: #1e3a8a;
+      color: #fff;
+    }
+
+    .sidebar.collapsed a span {
+      display: none;
+    }
+
+    .sidebar.collapsed .menu a {
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .main {
+      margin-left: 240px;
+      padding: 30px;
+      width: calc(100% - 240px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+    .sidebar.collapsed ~ .main {
+      margin-left: 80px;
+      width: calc(100% - 80px);
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+       @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .sidebar.collapsed {
+        width: 70px;
+      }
+
+      .main {
+        margin-left: 200px;
+      }
+
+      .sidebar.collapsed ~ .main {
+        margin-left: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== SIDEBAR ====== -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="brand">MENU</span>
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <nav class="menu">
+      <a href="/"><i>🏠</i><span>Dashboard</span></a>
+      <a href="/log"><i>📋</i><span>Log Data</span></a>
+      <a href="/settings" class="active"><i>⚙️</i><span>Settings</span></a>
+   
+    </nav>
+  </div>
+
+  <main>
+    <h1>Settings</h1>
+    <div class="settings-box">
+      <p>Atur parameter sistem di sini (misalnya delay lampu, sensitivitas deteksi, dll).</p>
+    </div>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("collapsed");
+    }
+  </script>
+</body>
+</html>
